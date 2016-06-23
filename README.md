@@ -90,6 +90,7 @@ Discovering lavishingly stunning AirBnB homes anywhere in the world has never be
         * redirect to YesOrNo Page 
             * ***with results as an array???***
             * ***one by one???***
+* **An Error popup will appear** if no results matches user's search requirements
 
 ###### YesOrNo Page
 * Render API response (apartment listings) - **one at a time!**
