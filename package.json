@@ -6,9 +6,11 @@
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
+    "flow": "^0.2.3",
     "react": "15.1.0",
     "react-native": "^0.28.0",
     "react-redux": "^4.4.5",
-    "redux": "^3.5.2"
+    "redux": "^3.5.2",
+    "watchman": "^0.1.8"
   }
 }
