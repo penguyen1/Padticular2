@@ -12,6 +12,7 @@ export const REMOVE_APT = 'REMOVE_APT'
 export function createUser(userData) {
   return {
     type: CREATE_USER,
+    text: 'creating new user account',
     userData: userData
   }
 }
@@ -19,6 +20,7 @@ export function createUser(userData) {
 export function loginUser(userData) {
   return {
     type: LOGIN_USER,
+    text: 'logging in user',
     userData: userData
   }
 }
@@ -26,6 +28,7 @@ export function loginUser(userData) {
 export function logoutUser(userData) {
   return {
     type: LOGOUT_USER,
+    text: 'logging out user',
     userData: userData
   }
 }
@@ -33,6 +36,7 @@ export function logoutUser(userData) {
 export function addApt(apt_id) {
   return {
     type: ADD_APT,
+    text: 'adding apt to favs',
     id: apt_id
   }
 }
@@ -40,6 +44,7 @@ export function addApt(apt_id) {
 export function removeApt(apt_id) {
   return {
     type: REMOVE_APT,
+    text: 'removing apt from favs',
     id: apt_id
   }
 }
@@ -47,6 +52,7 @@ export function removeApt(apt_id) {
 function favsLoaded(apts) {
   return {
     type: SHOW_APTS,
+    text: 'loading apt favs',
     apts: apts
   }
 }
