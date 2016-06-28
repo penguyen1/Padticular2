@@ -8,14 +8,6 @@ export const ADD_APT = 'ADD_APT'
 export const REMOVE_APT = 'REMOVE_APT'
 // export const VIEW_APT = 'VIEW_APT'
 // export const SEARCH_RESULTS = 'SEARCH_RESULTS'
-export const PUSH = 'PUSH';
-export const POP = 'POP';
-export const DISMISS = 'DISMISS';
-export const RESET = 'RESET'
-export const INIT = 'INIT'
-export const CUSTOM = 'CUSTOM'
-export const REPLACE = 'REPLACE'
-export const SELECT = 'SELECT'
 
 export function createUser(userData) {
   return {
@@ -101,83 +93,3 @@ export function showApts() {
 //     })
 //   }
 // }
-
-
-
-
-// ATTENTION!!
-// Code was provided by Aksonov's React-Native-Redux-Router
-// URL - https://github.com/aksonov/react-native-redux-router/blob/master/actions.js
-
-function filterParam(data) {
-  if(typeof(data) != 'object') {
-    return data
-  }
-  if(!data) { return }
-
-  var proto = (data||{}).constructor.name        // avoid passing React Native parameters
-  if(proto != 'Object') { 
-    data = {}
-  }
-  if(data.data) {
-    data.data = filterParam(data.data)
-  }
-  return data
-}
-
-let CoreActions = {
-  push: function(data) {
-    return {
-      ...filterParam(data),       // is there a space betw ... filterParam??
-      type: PUSH
-    }
-  },
-  pop: function(data = {}) {
-    return {
-      ...filterParam(data),
-      type: POP
-    }
-  },
-  dismiss: function(data) {
-    return {
-      ...filterParam(data),
-      type: DISMISS
-    }
-  },
-  reset: function(initial) {
-    if(!initial) {
-      throw new Error("Param should be non-empty")
-    }
-    return {
-      initial,
-      type: RESET
-    }
-  },
-  init: function(initial) {
-    return {
-      initial,
-      type: INIT
-    }
-  },
-  custom: function(data) {
-    return {
-      ... filterParam(data),
-      type: CUSTOM
-    }
-  },
-  replace: function(data) {
-    return {
-      ... filterParam(data),
-      type: REPLACE
-    }
-  },
-  select: function(data) {
-    return {
-      ... filterParam(data),
-      type: SELECT
-    }
-  }
-}
-
-let Actions = {... CoreActions}
-export {CoreActions, Actions}

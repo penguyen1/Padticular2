@@ -1,7 +1,8 @@
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
-import { appReducers, reducer } from '../Reducers'
+import { appReducers } from '../Reducers'
 // import syncOffline from './syncOffline'
+var { Router, routerReducer, Route, Container, Animations, Schema } = require('react-native-redux-router');
 
 export default function configureStore(initialState) {
   const store = createStore(
