@@ -24,8 +24,8 @@
 // URL - https://github.com/aksonov/react-native-redux-router/blob/master/Example/index.ios.js
 
 'use strict';
-var React = require('react-native');
-var { AppRegistry, StyleSheet, Text, View } = React;
+// var React = require('react-native');
+// var { AppRegistry, StyleSheet, Text, View } = React;
 var Launch = require('./src/testComponents/Launch');
 var Register = require('./src/testComponents/Register');
 var Login = require('./src/testComponents/Login');
@@ -34,6 +34,8 @@ var Error = require('./src/testComponents/Error');
 var Home = require('./src/testComponents/Home');
 var { Router, routerReducer, Route, Container, Animations, Schema } = require('react-native-redux-router');
 
+import React, { Component } from 'react'
+import { AppRegistry, StyleSheet, Text, View } from 'react-native'
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import createLogger from 'redux-logger';
