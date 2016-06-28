@@ -104,6 +104,11 @@ export function showApts() {
 
 
 
+
+// ATTENTION!!
+// Code was provided by Aksonov's React-Native-Redux-Router
+// URL - https://github.com/aksonov/react-native-redux-router/blob/master/actions.js
+
 function filterParam(data) {
   if(typeof(data) != 'object') {
     return data
