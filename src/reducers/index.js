@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux'
-import userReducer from './users'
-import aptsReducer from './apts'
+import users from './users'
+import apts from './apts'
 
-export default combineReducers({
-  userReducer,
-  aptsReducer
+const appReducers = combineReducers({
+  users,
+  apts
 })
+
+export default appReducers

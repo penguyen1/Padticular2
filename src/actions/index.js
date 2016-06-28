@@ -12,7 +12,7 @@ export const REMOVE_APT = 'REMOVE_APT'
 export function createUser(userData) {
   return {
     type: CREATE_USER,
-    text: 'creating new user account',
+    text: 'creating new user',
     userData: userData
   }
 }
@@ -33,19 +33,19 @@ export function logoutUser(userData) {
   }
 }
 
-export function addApt(apt_id) {
+export function addApt(id) {
   return {
     type: ADD_APT,
     text: 'adding apt to favs',
-    id: apt_id
+    id: id
   }
 }
 
-export function removeApt(apt_id) {
+export function removeApt(id) {
   return {
     type: REMOVE_APT,
     text: 'removing apt from favs',
-    id: apt_id
+    id: id
   }
 }
 
@@ -72,10 +72,10 @@ export function showApts() {
 //   }
 // }
 
-// export function viewApt(apt_id) {
+// export function viewApt(id) {
 //   return {
 //     type: VIEW_APT,
-//     id: apt_id
+//     id: id
 //   }
 // }
 

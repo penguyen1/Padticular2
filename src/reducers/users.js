@@ -1,81 +1,34 @@
-import {
-  CREATE_USER,
-  LOGIN_USER,
-  LOGOUT_USER
-} from '../actions/index'
 
 const initialState = {
   user: {},
-  userOnline: false
+  online: false
 }
 
-export default function userReducer(state = initialState, action) {
-  console.log('users.js reducer: ', action)
+ const users = (state = initialState, action) => {
+  console.log('users reducer action: ', action)
 
   switch (action.type) {
     case CREATE_USER:
+      console.log('user reducer - creating user')
+      return Object.assign({}, state, {
+        user: action.userData
+      })
     case LOGIN_USER:
+      console.log('user reducer - login user/set user info')
       return {
-        user: 
+        user: action.userData,
+        online: true
       }
     case LOGOUT_USER:
+      console.log('user reducer - logout user/empty user info {}')
+      return {
+        user: {},
+        online: false
+      }
     default:
+      console.log('user reducer - N/A')
       return state
   }
 }
 
-// export default function reducer(state = initialState, action) {
-//   let list
-
-//   console.log(action)
-//   switch (action.type) {
-//   case ADD_ITEM:
-//     list = state.onlineList.concat([action.itemData]).sort((a, b) => b.time - a.time)
-
-//     return {
-//       ...state,
-//       onlineList: list,
-//       offlineList: list
-//     }
-//   case REMOVE_ITEM:
-//     list = state.onlineList.slice(0)
-//     const index = list.map(i => i.id).indexOf(action.id)
-//     list.splice(index, 1)
-
-//     return {
-//       ...state,
-//       onlineList: list,
-//       offlineList: list
-//     }
-//   case OFFLINE_ITEMS_LOADED:
-//     return {
-//       ...state,
-//       offlineList: action.items,
-//       offlineLoaded: true
-//     }
-//   case CONNECTION_CHECKING:
-//     return {
-//       ...state,
-//       connectionChecked: false
-//     }
-//   case CONNECTION_CHECKED:
-//     return {
-//       ...state,
-//       connectionChecked: true
-//     }
-//   case CONNECTION_ONLINE:
-//     return {
-//       ...state,
-//       connectionChecked: true,
-//       connected: true
-//     }
-//   case CONNECTION_OFFLINE:
-//     return {
-//       ...state,
-//       connectionChecked: true,
-//       connected: false
-//     }
-//   default:
-//     return state
-//   }
-// }
+export default users

@@ -1,103 +1,57 @@
-import {
-  SHOW_APTS,
-  ADD_APT,
-  REMOVE_APT
-} from '../actions/index'
 
-export default function aptsReducer(state = [], action) {
-  console.log('apts.js reducer: ', action)
+const apt = (state, action) => {
+  console.log('apt reducer action: ', action)
 
-  switch (action.type) {
-    case SHOW_APTS:
-      // return state.map(apt => )
-      return [
-        ...state,
-        {
-          text: action.text,
-          apts: action.apts
-        }
-      ]
-    case ADD_APT:
-      return [
-        ...state,
-        {
-          text: action.text,
-          id: action.id
-        }
-      ]
-    case REMOVE_APT:
-      return [
-        ...state,
-        {
-          text: action.text,
-          id: action.id
-        }
-      ]
+  switch(action.type) {
+    case 'SHOW_APTS':
+      console.log('apt SHOW_APTS')
+    case 'ADD_APT':
+      console.log('apt ADD_APT')
+      return {
+        id: action.id,
+        text: action.text,
+        saved: true
+      }
+    case 'REMOVE_APT':
+      console.log('apt REMOVE_APT')
+      if(state.id === action.id) {
+        return Object.assign({}, state, {
+          saved: !state.saved                   // changes true to false
+        })
+      } 
+      return state
     default:
+      console.log('apt reducer - N/A')
       return state
   }
 }
 
+const apts = (state = [], action) => {
+  console.log('aptS reducer action: ', action)
+  
+  switch(action.type) {
+    case 'SHOW_APTS':
+      console.log('aptS SHOW_APTS')
+      return state.map(apt => {
+        // return apt.saved ? apt : {}
+        if(apt.saved) {
+          return apt                            // adds only if apt.saved = true
+        }
+      })
+    case 'ADD_APT':
+      console.log('aptS ADD_APT')
+      return [
+        ...state,
+        apt(undefined, action)
+      ]
+    case 'REMOVE_APT':
+      console.log('aptS REMOVE_APT')
+      return state.map(x => apt(x, action))
+    default:
+      console.log('aptS reducer - N/A')
+      return state
+  }
+}
 
+export default apts
 
-// const initialState = {
-//   onlineList: [],
-//   offlineList: [],
-//   connectionChecked: false
-// }
-
-// export default function reducer(state = initialState, action) {
-//   let list
-
-//   console.log(action)
-//   switch (action.type) {
-//   case ADD_ITEM:
-//     list = state.onlineList.concat([action.itemData]).sort((a, b) => b.time - a.time)
-
-//     return {
-//       ...state,
-//       onlineList: list,
-//       offlineList: list
-//     }
-//   case REMOVE_ITEM:
-//     list = state.onlineList.slice(0)
-//     const index = list.map(i => i.id).indexOf(action.id)
-//     list.splice(index, 1)
-
-//     return {
-//       ...state,
-//       onlineList: list,
-//       offlineList: list
-//     }
-//   case OFFLINE_ITEMS_LOADED:
-//     return {
-//       ...state,
-//       offlineList: action.items,
-//       offlineLoaded: true
-//     }
-//   case CONNECTION_CHECKING:
-//     return {
-//       ...state,
-//       connectionChecked: false
-//     }
-//   case CONNECTION_CHECKED:
-//     return {
-//       ...state,
-//       connectionChecked: true
-//     }
-//   case CONNECTION_ONLINE:
-//     return {
-//       ...state,
-//       connectionChecked: true,
-//       connected: true
-//     }
-//   case CONNECTION_OFFLINE:
-//     return {
-//       ...state,
-//       connectionChecked: true,
-//       connected: false
-//     }
-//   default:
-//     return state
-//   }
-// }
