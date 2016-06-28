@@ -1,10 +1,10 @@
 'use strict';
 
-var React = require('react-native');
-var {View, Text, StyleSheet} = React;
+import React, { Component } from 'react'
+import { View, Text, StyleSheet } from 'react-native'
 var Button = require('react-native-button');
 
-class Error extends React.Component {
+class Error extends Component {
     render(){
         let Actions = this.props.routes;
         return (
