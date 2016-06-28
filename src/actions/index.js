@@ -8,6 +8,14 @@ export const ADD_APT = 'ADD_APT'
 export const REMOVE_APT = 'REMOVE_APT'
 // export const VIEW_APT = 'VIEW_APT'
 // export const SEARCH_RESULTS = 'SEARCH_RESULTS'
+export const PUSH = 'PUSH';
+export const POP = 'POP';
+export const DISMISS = 'DISMISS';
+export const RESET = 'RESET'
+export const INIT = 'INIT'
+export const CUSTOM = 'CUSTOM'
+export const REPLACE = 'REPLACE'
+export const SELECT = 'SELECT'
 
 export function createUser(userData) {
   return {
@@ -96,51 +104,75 @@ export function showApts() {
 
 
 
+function filterParam(data) {
+  if(typeof(data) != 'object') {
+    return data
+  }
+  if(!data) { return }
 
+  var proto = (data||{}).constructor.name        // avoid passing React Native parameters
+  if(proto != 'Object') { 
+    data = {}
+  }
+  if(data.data) {
+    data.data = filterParam(data.data)
+  }
+  return data
+}
 
+let CoreActions = {
+  push: function(data) {
+    return {
+      ...filterParam(data),       // is there a space betw ... filterParam??
+      type: PUSH
+    }
+  },
+  pop: function(data = {}) {
+    return {
+      ...filterParam(data),
+      type: POP
+    }
+  },
+  dismiss: function(data) {
+    return {
+      ...filterParam(data),
+      type: DISMISS
+    }
+  },
+  reset: function(initial) {
+    if(!initial) {
+      throw new Error("Param should be non-empty")
+    }
+    return {
+      initial,
+      type: RESET
+    }
+  },
+  init: function(initial) {
+    return {
+      initial,
+      type: INIT
+    }
+  },
+  custom: function(data) {
+    return {
+      ... filterParam(data),
+      type: CUSTOM
+    }
+  },
+  replace: function(data) {
+    return {
+      ... filterParam(data),
+      type: REPLACE
+    }
+  },
+  select: function(data) {
+    return {
+      ... filterParam(data),
+      type: SELECT
+    }
+  }
+}
 
-
-
-
-
-// NECESSARY ??
-
-// export const OFFLINE_ITEMS_LOADED = 'OFFLINE_ITEMS_LOADED'
-// export const CONNECTION_CHECKING = 'CONNECTION_CHECKING'
-// export const CONNECTION_CHECKED = 'CONNECTION_CHECKED'
-// export const CONNECTION_ONLINE = 'CONNECTION_ONLINE'
-// export const CONNECTION_OFFLINE = 'CONNECTION_OFFLINE'
-
-// function offlineItemsLoaded(items) {
-//   return {
-//     type: OFFLINE_ITEMS_LOADED,
-//     items: items
-//   }
-// }
-
-// export function loadOfflineItems() {
-//   return dispatch => {
-//     offline.get('items').then(items => {
-//       dispatch(offlineItemsLoaded(items || []))
-//     })
-//   }
-// }
-
-// export function checkConnection() {
-//   return dispatch => {
-//     dispatch({type: CONNECTION_CHECKING})
-//     setTimeout(() => dispatch({type: CONNECTION_CHECKED}), 5000)
-//   }
-// }
-
-// export function goOnline() {
-//   return {
-//     type: CONNECTION_ONLINE
-//   }
-// }
-
-// export function goOffline() {
-//   return {
-//     type: CONNECTION_OFFLINE
-//   }
-// }
+let Actions = {... CoreActions}
+export {CoreActions, Actions}
