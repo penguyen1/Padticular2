@@ -26,11 +26,7 @@ class NavBarBase extends React.Component {
                              title= {{title:this.props.title}}
                              prevTitle={this.props.initial ? " " : null}
                              leftButton = {this.props.leftButton ? this.props.leftButton : {title:''}}
-                             rightButton = {this.props.rightButton ? this.props.rightButton : {title:''}}
-
-
-
-           />
+                             rightButton = {this.props.rightButton ? this.props.rightButton : {title:''}} />
    }
 }
 class NavBar extends React.Component {

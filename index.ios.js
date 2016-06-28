@@ -46,7 +46,7 @@ const createStoreWithMiddleware = applyMiddleware(loggerMiddleWare)(createStore)
 const reducer = combineReducers({routerReducer});
 let store = createStoreWithMiddleware(reducer);
 
-class App extends React.Component {
+class App extends Component {
   render(){
     return (
       <View style={{flex:1}}>
@@ -68,7 +68,7 @@ class App extends React.Component {
     );
   }
 }
-class Padticular2 extends React.Component {
+class Padticular2 extends Component {
   render() {
     return (
       <Provider store={store}>
